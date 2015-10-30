@@ -1,0 +1,182 @@
+<html>
+<head>
+	<title>File manager</title>
+	<link href="dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="dist/css/font-awesome.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="dist/css/bootcards-desktop.css">
+</head>
+<body class="has-bootcards-navbar-double">
+	<!-- Top menubar start -->
+	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+
+			<a class="navbar-brand" title="Bootcards Starter" href="http://192.168.1.2/node/node-cpanel/">Bootcards Starter</a>  
+
+			<!--navbar menu options: shown on desktop only -->
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right bootcards-nav-secondary">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle navbar-link" data-toggle="dropdown" role="button" aria-expanded="false">
+							<i class="fa fa-globe"></i>
+							Languages <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Deutsch</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-check pull-right"></i>English</a></li>
+							<li><a href="#">Espanol</a></li>
+						</ul>
+					</li> 
+					<li>
+						<a href="#">
+							<i class="fa fa-fw fa-lock"></i>
+							Login
+						</a>
+					</li>    
+				</ul>
+				<ul class="nav navbar-nav navbar-right bootcards-nav-primary">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+							<i class="fa fa-fw fa-dashboard"></i>
+							Home <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#"><i class="fa fa-fw fa-envelope-o"></i> Action</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-film"></i> Another action</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-file-o"></i> Something else here</a></li>
+							<li class="divider"></li>
+							<li><a href="#"><i class="fa fa-fw fa-bar-chart-o"></i> Separated link</a></li>
+						</ul>
+					</li>
+					
+					<li>
+						<a href="#">
+							<i class="fa fa-fw fa-briefcase"></i>
+							Portfolio
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fa fa-fw fa-bullhorn"></i>
+							Blog
+						</a>
+					</li>
+					
+				</ul>
+			</div>
+		</div><!--container-fluid-->
+	</div>  <!--navbar--> 
+	<!-- Top menubar end -->
+	<div class="row">
+		<!-- Application icons start -->
+		<div class="col-sm-6">
+			<div class="bootcards-list">
+				<div class="panel panel-default">
+					<div class="panel-heading clearfix">
+						<h3 class="panel-title pull-left">File browser: </h3>
+						<a class="btn btn-default pull-right" href="#" id="btn_refresh">
+							<i class="fa fa-refresh"></i>
+							Refresh
+						</a>
+						<a class="btn btn-default pull-right" href="#" id="btn_up">
+							<i class="fa fa-arrow-up"></i>
+							Back
+						</a>
+						
+					</div>
+					<div class="list-group connectedSortable" id="files_list" style="overflow-y: scroll; height:75%;">
+						<!-- Items go here -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Applications icon end -->
+		<div class="col-sm-6">
+			<div class="bootcards-list">
+				<div class="panel panel-default">
+					<div class="panel-heading clearfix">
+						<h3 class="panel-title pull-left">Files to archive</h3>
+						<a class="btn btn-default pull-right">
+							<i class="fa fa-remove"></i>
+							Clear
+						</a>
+						<a class="btn btn-default pull-right" id="btn_pack">
+							<i class="fa fa-archive"></i>
+							Pack
+						</a>
+						
+					</div>
+					<div class="list-group connectedSortable" id="archived_files_list" style="overflow-y: scroll; height:75%;">
+						<div class="list-group-item">
+							<!-- TODO: Move to CSS file -->	
+							<i class="fa fa-archive fa-3x"  style="float:left"></i>
+							<h4 style="padding-left: 74px">Drop files below</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
+	</div>
+	<div class="row">
+		<div class="col-sm-8" id="archive_div" style="display: none;">
+			<div class="panel panel-default bootcards-file">
+				<div class="panel-heading">
+					<h3 class="panel-title">Prepared archive file</h3>
+				</div>
+				<div class="list-group">
+					<div class="list-group-item">
+						<a href="#">
+							<i class="fa fa-file-zip-o"></i>
+						</a>
+						<h4 class="list-group-item-heading">
+							<form method="POST" action="/nodeproxy/send_file">
+								<a href="#" id="download_name">Archive.zip</a>
+								<input type="hidden" name="f" value="/tmp/Archive.tar"></input>
+							</form>
+						</h4>
+						<p class="list-group-item-text"><strong>ZIP</strong></p>
+						<p class="list-group-item-text"><strong>3.2Mb</strong></p>
+					</div>
+				</div>
+				<div class="panel-footer">
+					<div class="btn-group btn-group-justified">
+						<div class="btn-group">
+							<button class="btn btn-default">
+								<i class="fa fa-arrow-down"></i>
+								Download
+							</button>
+						</div>
+						<div class="btn-group">
+							<button class="btn btn-default">
+								<i class="fa fa-envelope"></i>
+								Email
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Footer start -->
+	<div class="navbar navbar-default navbar-fixed-bottom">
+		<div class="container">
+			<div class="bootcards-desktop-footer clearfix">
+				<p class="pull-left">Created by Arti</p>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="dist/js/jquery-2.1.4.js"></script>
+	<script src="dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="dist/js/bootcards.js"></script>
+	<script type="text/javascript" src="dist/js/jquery-ui.js"></script>
+	<script type="text/javascript" src="ui.js"></script>
+</body>
+</html>
